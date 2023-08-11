@@ -1,6 +1,7 @@
 package com.example.grouphomework
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -28,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         observeMovieList()
-
+        binding.ivBackArrow.setOnClickListener{
+        //     val intent= Intent(this,MainActivity::class.java)
+        //     startActivity(intent)
+        }
         binding.ivCleanSearch.setOnClickListener{
             binding.etSearch.text.clear()
         }
