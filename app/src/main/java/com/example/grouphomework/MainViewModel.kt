@@ -7,20 +7,21 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel:ViewModel() {
+class MainViewModel : ViewModel() {
 
-    private val _movieListState:MutableStateFlow<MovieListState> = MutableStateFlow(MovieListState.Idle)
-    val movieListState:StateFlow<MovieListState> = _movieListState
+    private val _movieListState: MutableStateFlow<MovieListState> =
+        MutableStateFlow(MovieListState.Idle)
+    val movieListState: StateFlow<MovieListState> = _movieListState
 
     init {
         getMovieList()
     }
 
-    private fun getMovieList(){
+    private fun getMovieList() {
         viewModelScope.launch {
-            _movieListState.value=MovieListState.Loading
+            _movieListState.value = MovieListState.Loading
             delay(2000)
-            _movieListState.value=MovieListState.Result(Database.movies)
+            _movieListState.value = MovieListState.Result(Database.movies)
         }
     }
 }

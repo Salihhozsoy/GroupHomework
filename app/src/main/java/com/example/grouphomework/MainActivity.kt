@@ -28,10 +28,14 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        listeners()
         observeMovieList()
+
+    }
+    private fun listeners(){
         binding.ivBackArrow.setOnClickListener{
-        //     val intent= Intent(this,MainActivity::class.java)
-        //     startActivity(intent)
+            //     val intent= Intent(this,MainActivity::class.java)
+            //     startActivity(intent)
         }
         binding.ivCleanSearch.setOnClickListener{
             binding.etSearch.text.clear()
@@ -40,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             var imm:InputMethodManager =  getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.ivCloseKeyboard.windowToken, 0)
         }
-
         binding.etSearch.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 println("beforeTextChanged")
@@ -63,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
     private fun observeMovieList(){
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED){
@@ -85,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                             AlertDialog.Builder(this@MainActivity).setTitle("Error").setMessage("liste gelirken sorun oluştu").create().show()
                         }
                     }
-
                 }
             }
         }
